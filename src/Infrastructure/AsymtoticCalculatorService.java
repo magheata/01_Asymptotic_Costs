@@ -32,6 +32,13 @@ public class AsymtoticCalculatorService implements IAlgorithm {
                 finish = Instant.now();
                 timeElapsed = Duration.between(start, finish).toMillis();  //in millis
             case ONLOGN:
+               double l= Math.log10(n);
+               for (int i =0;i <n;i++){
+                   for (double d =0; d<l;d++){
+                       dummy_variable++;
+                   }
+               }
+
                 break;
             default:
 
