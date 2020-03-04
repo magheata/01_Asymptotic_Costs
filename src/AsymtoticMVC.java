@@ -1,5 +1,4 @@
 import Application.AsymtoticController;
-import Domain.DTO.Point;
 import Infrastructure.AsymtoticCalculatorService;
 import Presentation.Window;
 
@@ -11,7 +10,6 @@ public class AsymtoticMVC {
     private AsymtoticController asymtoticController;
 
     private boolean active_process;
-    private Point[] points;
 
     public static void main(String[] args) {
         try {

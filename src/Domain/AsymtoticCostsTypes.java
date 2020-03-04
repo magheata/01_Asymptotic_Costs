@@ -3,5 +3,6 @@ package Domain;
 public enum AsymtoticCostsTypes {
     ON,
     ONLOGN,
-    ONSQR
+    ONSQR,
+    O1
 }

@@ -1,8 +1,10 @@
 package Domain.Interfaces;
 
 import Domain.AsymtoticCostsTypes;
-import Domain.DTO.Point;
+
+import java.awt.*;
+import java.util.concurrent.Future;
 
 public interface IAlgorithm {
-    Point RunExample(AsymtoticCostsTypes type, int n);
+    Future<Point> RunExample(AsymtoticCostsTypes type, int n);
 }
