@@ -14,12 +14,13 @@ public class AsymtoticController {
 
     private Window window;
     private AsymtoticCalculatorService asymtoticCalculatorService;
-    private final int[] examples = {10, 100, 1000, 10000, 100000, 1000000};
+    private int[] examples;
 
-    public AsymtoticController(Window window, AsymtoticCalculatorService asymtoticCalculatorService){
+    public AsymtoticController(Window window, AsymtoticCalculatorService asymtoticCalculatorService, int[] examples){
         this.window = window;
         this.asymtoticCalculatorService = asymtoticCalculatorService;
         this.window.addAsymtoticListener(new AsymtoticListener());
+        this.examples = examples;
     }
 
     class AsymtoticListener implements ActionListener {
@@ -27,18 +28,18 @@ public class AsymtoticController {
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
             if(source == window.o1){
-                paintPointsToWindow(AsymtoticCostsTypes.O1);
+                paintPointsToWindow(AsymtoticCostsTypes.O1, 1);
             }
             else if (source == window.on){
-                paintPointsToWindow(AsymtoticCostsTypes.ON);
+                paintPointsToWindow(AsymtoticCostsTypes.ON, 2);
             } else if (source == window.onlogn){
-                paintPointsToWindow(AsymtoticCostsTypes.ONLOGN);
+                paintPointsToWindow(AsymtoticCostsTypes.ONLOGN, 3);
             } else {
-                paintPointsToWindow(AsymtoticCostsTypes.ONSQR);
+                paintPointsToWindow(AsymtoticCostsTypes.ONSQR, 4);
             }
         }
 
-        private void paintPointsToWindow(AsymtoticCostsTypes type){
+        private void paintPointsToWindow(AsymtoticCostsTypes type, int color){
             List<Point> points = new ArrayList<>();
             for (int example: examples) {
                 Future <Point> future = asymtoticCalculatorService.RunExample(type, example);
@@ -49,7 +50,7 @@ public class AsymtoticController {
                     ex.printStackTrace();
                 }
             }
-            window.paintPoint(points);
+            window.paintPoints(points, color);
         }
     }
 }

@@ -1,50 +1,53 @@
 package Infrastructure;
 
 import Domain.AsymtoticCostsTypes;
-import Domain.Interfaces.IAlgorithm;
+import Domain.Interfaces.IAsymtoticCalculatorService;
 
 import java.awt.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class AsymtoticCalculatorService implements IAlgorithm {
+public class AsymtoticCalculatorService implements IAsymtoticCalculatorService {
 
     private ExecutorService executor = Executors.newSingleThreadExecutor();
     @Override
     public Future<Point> RunExample(AsymtoticCostsTypes type, int n) {
         return executor.submit(() -> {
-            long temps = System.nanoTime();
-            int dummy_variable = 0;
-            long timeElapsed = 0;
+            double temps;
+            double timeElapsed = 0;
             switch (type){
                 case O1:
+                    temps = System.nanoTime();
+                    Thread.sleep(1);
                     timeElapsed = System.nanoTime() - temps;  //in millis
                     break;
                 case ON:
+                    temps = System.nanoTime();
                     for (int i = 0; i < n; i++){
-                        dummy_variable++;
+                        Thread.sleep(1);
                     }
                     timeElapsed = System.nanoTime() - temps;  //in millis
                     break;
                 case ONSQR:
+                    temps = System.nanoTime();
                     for (int i = 0; i < n; i++){
                         for (int j = 0; j < n; j++){
-                            dummy_variable++;
+                            Thread.sleep(1);
                         }
                     }
                     timeElapsed = System.nanoTime() - temps;  //in millis
                     break;
                 case ONLOGN:
-                    double l =  Math.log10(n);
+                    temps = System.nanoTime();
+                    double l =  Math.log(n);
                     for (int i = 0; i < n ; i++){
                         for (double d = 0; d < l; d++){
-                            dummy_variable++;
+                            Thread.sleep(1);
                         }
                     }
                     timeElapsed = System.nanoTime() - temps;  //in millis
                     break;
-                default:
             }
             return new Point(n, (int) timeElapsed);
         });

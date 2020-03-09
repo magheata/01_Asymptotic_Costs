@@ -5,6 +5,6 @@ import Domain.AsymtoticCostsTypes;
 import java.awt.*;
 import java.util.concurrent.Future;
 
-public interface IAlgorithm {
+public interface IAsymtoticCalculatorService {
     Future<Point> RunExample(AsymtoticCostsTypes type, int n);
 }

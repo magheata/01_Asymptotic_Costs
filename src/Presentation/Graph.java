@@ -1,24 +1,30 @@
 package Presentation;
 
+import Domain.Interfaces.IGraph;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Graph extends JPanel {
+public class Graph extends JPanel implements IGraph {
     private static final int PREF_W = 800;
     private static final int PREF_H = 650;
     private static final int BORDER_GAP = 30;
-    private static final Color GRAPH_COLOR = Color.green;
+    private static final Color GRAPH_COLOR_1 = Color.green;
+    private static final Color GRAPH_COLOR_2 = Color.red;
+    private static final Color GRAPH_COLOR_3 = Color.blue;
+    private static final Color GRAPH_COLOR_4 = Color.lightGray;
     private static final Color GRAPH_POINT_COLOR = new Color(150, 50, 50, 180);
     private static final Stroke GRAPH_STROKE = new BasicStroke(3f);
     private static final int GRAPH_POINT_WIDTH = 10;
-    private static final int Y_HATCH_CNT = 10;
+    private static int Y_HATCH_CNT;
     private static int number_of_examples;
 
     public Graph(int number_of_examples){
         this.number_of_examples = number_of_examples;
+        Y_HATCH_CNT = number_of_examples;
     }
 
     @Override
@@ -39,7 +45,7 @@ public class Graph extends JPanel {
         }
         // and for x axis
         for (int i = 0; i < number_of_examples - 1; i++) {
-            int x0 = (i + 1) * (getWidth() - BORDER_GAP * 2) / number_of_examples + BORDER_GAP;
+            int x0 = (i + 1) * (getWidth() - BORDER_GAP * 2) / (number_of_examples - 1) + BORDER_GAP;
             int x1 = x0;
             int y0 = getHeight() - BORDER_GAP;
             int y1 = y0 - GRAPH_POINT_WIDTH;
@@ -52,29 +58,32 @@ public class Graph extends JPanel {
         return new Dimension(PREF_W, PREF_H);
     }
 
-    private int getMaximumTime(List<Point> points){
-        List<Integer> timePoints = new ArrayList();
-        for (int i = 0; i < points.size(); i++){
-            timePoints.add(points.get(i).y);
-        }
-        return Collections.max(timePoints, null);
-    }
-
-    public void paintPoints(Graphics g, List<Point> graphPointsInput){
+    public void paintPoints(Graphics g, List<Point> graphPointsInput, int color){
         int MAX_SCORE = getMaximumTime(graphPointsInput);
         double xScale = ((double) getWidth() - 2 * BORDER_GAP) / (graphPointsInput.size() - 1);
-        double yScale = ((double) getHeight() - 2 * BORDER_GAP) / (MAX_SCORE - 1);
-
+        double yScale = ((double) getHeight() - 2 * BORDER_GAP) / (getMaximumTime(graphPointsInput) - 1);
         List<Point> graphPoints = new ArrayList<>();
         for (int i = 0; i < graphPointsInput.size(); i++) {
             int x1 = (int) (i * xScale + BORDER_GAP);
             int y1 = (int) ((MAX_SCORE - graphPointsInput.get(i).y) * yScale + BORDER_GAP);
             graphPoints.add(new Point(x1, y1));
         }
-
         Graphics2D g2 = (Graphics2D)g;
         Stroke oldStroke = g2.getStroke();
-        g2.setColor(GRAPH_COLOR);
+        switch(color){
+            case 1:
+                g2.setColor(GRAPH_COLOR_1);
+                break;
+            case 2:
+                g2.setColor(GRAPH_COLOR_2);
+                break;
+            case 3:
+                g2.setColor(GRAPH_COLOR_3);
+                break;
+            case 4:
+                g2.setColor(GRAPH_COLOR_4);
+                break;
+        }
         g2.setStroke(GRAPH_STROKE);
         for (int i = 0; i < graphPoints.size() - 1; i++) {
             int x1 = graphPoints.get(i).x;
@@ -92,5 +101,13 @@ public class Graph extends JPanel {
             int ovalH = GRAPH_POINT_WIDTH;
             g2.fillOval(x, y, ovalW, ovalH);
         }
+    }
+
+    private int getMaximumTime(List<Point> points){
+        List<Integer> timePoints = new ArrayList();
+        for (int i = 0; i < points.size(); i++){
+            timePoints.add(points.get(i).y);
+        }
+        return Collections.max(timePoints, null);
     }
 }
