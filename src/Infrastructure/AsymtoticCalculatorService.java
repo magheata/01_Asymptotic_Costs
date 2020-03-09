@@ -2,8 +2,8 @@ package Infrastructure;
 
 import Domain.AsymtoticCostsTypes;
 import Domain.Interfaces.IAsymtoticCalculatorService;
+import Domain.Point;
 
-import java.awt.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -14,8 +14,8 @@ public class AsymtoticCalculatorService implements IAsymtoticCalculatorService {
     @Override
     public Future<Point> RunExample(AsymtoticCostsTypes type, int n) {
         return executor.submit(() -> {
-            double temps;
-            double timeElapsed = 0;
+            long temps;
+            long timeElapsed = 0;
             switch (type){
                 case O1:
                     temps = System.nanoTime();
@@ -49,7 +49,7 @@ public class AsymtoticCalculatorService implements IAsymtoticCalculatorService {
                     timeElapsed = System.nanoTime() - temps;  //in millis
                     break;
             }
-            return new Point(n, (int) timeElapsed);
+            return new Point(n, timeElapsed);
         });
     }
 }

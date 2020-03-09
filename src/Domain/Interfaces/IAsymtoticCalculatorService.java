@@ -1,8 +1,8 @@
 package Domain.Interfaces;
 
 import Domain.AsymtoticCostsTypes;
+import Domain.Point;
 
-import java.awt.*;
 import java.util.concurrent.Future;
 
 public interface IAsymtoticCalculatorService {

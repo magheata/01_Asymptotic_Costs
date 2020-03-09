@@ -1,9 +1,9 @@
 package Application;
 import Domain.AsymtoticCostsTypes;
+import Domain.Point;
 import Infrastructure.AsymtoticCalculatorService;
 import Presentation.Window;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

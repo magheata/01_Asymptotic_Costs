@@ -31,7 +31,7 @@ public class Window extends JFrame {
         onsqr.addActionListener(asymtoticButtonListener);
     }
 
-    public void paintPoints(List<Point> points, int color){
+    public void paintPoints(List<Domain.Point> points, int color){
         graph.paintPoints(this.getGraphics(), points, color);
     }
 

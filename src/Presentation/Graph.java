@@ -31,6 +31,7 @@ public class Graph extends JPanel implements IGraph {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         // create x and y axes
         g2.drawLine(BORDER_GAP, getHeight() - BORDER_GAP, BORDER_GAP, BORDER_GAP);
@@ -51,6 +52,7 @@ public class Graph extends JPanel implements IGraph {
             int y1 = y0 - GRAPH_POINT_WIDTH;
             g2.drawLine(x0, y0, x1, y1);
         }
+
     }
 
     @Override
@@ -58,17 +60,20 @@ public class Graph extends JPanel implements IGraph {
         return new Dimension(PREF_W, PREF_H);
     }
 
-    public void paintPoints(Graphics g, List<Point> graphPointsInput, int color){
-        int MAX_SCORE = getMaximumTime(graphPointsInput);
+    public void paintPoints(Graphics g, List<Domain.Point> graphPointsInput, int color){
+        long MIN_SCORE = getMinimumTime(graphPointsInput);
+        Graphics2D g2 = (Graphics2D)g;
+        Insets insets = getInsets();
+        int h = getHeight() - insets.top - insets.bottom;
+        g2.scale(1.0, -1.0);
+        g2.translate(0, -h - insets.top);
         double xScale = ((double) getWidth() - 2 * BORDER_GAP) / (graphPointsInput.size() - 1);
-        double yScale = ((double) getHeight() - 2 * BORDER_GAP) / (getMaximumTime(graphPointsInput) - 1);
         List<Point> graphPoints = new ArrayList<>();
         for (int i = 0; i < graphPointsInput.size(); i++) {
             int x1 = (int) (i * xScale + BORDER_GAP);
-            int y1 = (int) ((MAX_SCORE - graphPointsInput.get(i).y) * yScale + BORDER_GAP);
+            int y1 = (int) ((graphPointsInput.get(i).y * 2) / MIN_SCORE) + BORDER_GAP;
             graphPoints.add(new Point(x1, y1));
         }
-        Graphics2D g2 = (Graphics2D)g;
         Stroke oldStroke = g2.getStroke();
         switch(color){
             case 1:
@@ -103,11 +108,11 @@ public class Graph extends JPanel implements IGraph {
         }
     }
 
-    private int getMaximumTime(List<Point> points){
-        List<Integer> timePoints = new ArrayList();
+    private Long getMinimumTime(List<Domain.Point> points){
+        List<Long> timePoints = new ArrayList();
         for (int i = 0; i < points.size(); i++){
             timePoints.add(points.get(i).y);
         }
-        return Collections.max(timePoints, null);
+        return Collections.min(timePoints, null);
     }
 }
