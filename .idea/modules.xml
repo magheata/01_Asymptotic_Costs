@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/01_Asymtotic_Costs.iml" filepath="$PROJECT_DIR$/01_Asymtotic_Costs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/01_Asymptotic_Costs.iml" filepath="$PROJECT_DIR$/01_Asymptotic_Costs.iml" />
     </modules>
   </component>
 </project>

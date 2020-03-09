@@ -4,9 +4,9 @@
  */
 
 package Application;
-import Domain.AsymtoticCostsTypes;
+import Domain.AsymptoticCostsTypes;
 import Domain.Point;
-import Infrastructure.AsymtoticCalculatorService;
+import Infrastructure.AsymptoticCalculatorService;
 import Presentation.Window;
 
 import java.awt.event.ActionEvent;
@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
-public class AsymtoticController {
+public class AsymptoticController {
 
     private Window window;
-    private AsymtoticCalculatorService asymtoticCalculatorService;
+    private AsymptoticCalculatorService asymtoticCalculatorService;
     private int[] examples;
 
     /***
@@ -27,7 +27,7 @@ public class AsymtoticController {
      * @param asymtoticCalculatorService elemento que calcula el coste de tiempo
      * @param examples lista de ejemplos de iteraciones
      */
-    public AsymtoticController(Window window, AsymtoticCalculatorService asymtoticCalculatorService, int[] examples){
+    public AsymptoticController(Window window, AsymptoticCalculatorService asymtoticCalculatorService, int[] examples){
         this.window = window;
         this.asymtoticCalculatorService = asymtoticCalculatorService;
         this.window.addAsymtoticListener(new AsymtoticListener());
@@ -42,14 +42,14 @@ public class AsymtoticController {
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
             if(source == window.o1){
-                paintPointsToWindow(AsymtoticCostsTypes.O1, 1);
+                paintPointsToWindow(AsymptoticCostsTypes.O1, 1);
             }
             else if (source == window.on){
-                paintPointsToWindow(AsymtoticCostsTypes.ON, 2);
+                paintPointsToWindow(AsymptoticCostsTypes.ON, 2);
             } else if (source == window.onlogn){
-                paintPointsToWindow(AsymtoticCostsTypes.ONLOGN, 3);
+                paintPointsToWindow(AsymptoticCostsTypes.ONLOGN, 3);
             } else {
-                paintPointsToWindow(AsymtoticCostsTypes.ONSQR, 4);
+                paintPointsToWindow(AsymptoticCostsTypes.ONSQR, 4);
             }
         }
 
@@ -58,7 +58,7 @@ public class AsymtoticController {
          * @param type tipo de coste que se ha seleccionado, está asociado al botón que se ha pulsado
          * @param color color de la línea del gráfico que se va a pintar
          */
-        private void paintPointsToWindow(AsymtoticCostsTypes type, int color){
+        private void paintPointsToWindow(AsymptoticCostsTypes type, int color){
             List<Point> points = new ArrayList<>();
             for (int example: examples) {
                 Future <Point> future = asymtoticCalculatorService.RunExample(type, example);

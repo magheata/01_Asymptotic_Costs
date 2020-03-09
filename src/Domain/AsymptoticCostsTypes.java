@@ -8,7 +8,7 @@ package Domain;
 /***
  * Clase que define los tipos de costes asintóticos que se han implementado
  */
-public enum AsymtoticCostsTypes {
+public enum AsymptoticCostsTypes {
     ON,
     ONLOGN,
     ONSQR,

@@ -5,11 +5,11 @@
 
 package Domain.Interfaces;
 
-import Domain.AsymtoticCostsTypes;
+import Domain.AsymptoticCostsTypes;
 import Domain.Point;
 
 import java.util.concurrent.Future;
 
-public interface IAsymtoticCalculatorService {
-    Future<Point> RunExample(AsymtoticCostsTypes type, int n);
+public interface IAsymptoticCalculatorService {
+    Future<Point> RunExample(AsymptoticCostsTypes type, int n);
 }

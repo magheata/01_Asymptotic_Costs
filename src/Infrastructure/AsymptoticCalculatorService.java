@@ -5,8 +5,8 @@
 
 package Infrastructure;
 
-import Domain.AsymtoticCostsTypes;
-import Domain.Interfaces.IAsymtoticCalculatorService;
+import Domain.AsymptoticCostsTypes;
+import Domain.Interfaces.IAsymptoticCalculatorService;
 import Domain.Point;
 
 import java.util.concurrent.ExecutorService;
@@ -16,7 +16,7 @@ import java.util.concurrent.Future;
 /***
  * Clase que calcula los costes
  */
-public class AsymtoticCalculatorService implements IAsymtoticCalculatorService {
+public class AsymptoticCalculatorService implements IAsymptoticCalculatorService {
 
     private ExecutorService executor = Executors.newSingleThreadExecutor();
 
@@ -28,7 +28,7 @@ public class AsymtoticCalculatorService implements IAsymtoticCalculatorService {
      * @return Punto calculado con coordenadas (x, y)
      */
     @Override
-    public Future<Point> RunExample(AsymtoticCostsTypes type, int n) {
+    public Future<Point> RunExample(AsymptoticCostsTypes type, int n) {
         return executor.submit(() -> {
             long temps;
             long timeElapsed = 0;
