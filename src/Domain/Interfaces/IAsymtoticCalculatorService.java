@@ -1,3 +1,8 @@
+/***
+ * AUTHORS: RAFAEL ADRIÁN GIL CAÑESTRO
+ *          MIRUNA ANDREEA GHEATA
+ */
+
 package Domain.Interfaces;
 
 import Domain.AsymtoticCostsTypes;

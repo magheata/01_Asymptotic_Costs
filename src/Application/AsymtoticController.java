@@ -1,3 +1,8 @@
+/***
+ * AUTHORS: RAFAEL ADRIÁN GIL CAÑESTRO
+ *          MIRUNA ANDREEA GHEATA
+ */
+
 package Application;
 import Domain.AsymtoticCostsTypes;
 import Domain.Point;
@@ -16,6 +21,12 @@ public class AsymtoticController {
     private AsymtoticCalculatorService asymtoticCalculatorService;
     private int[] examples;
 
+    /***
+     * Constructor
+     * @param window elemento gráfico
+     * @param asymtoticCalculatorService elemento que calcula el coste de tiempo
+     * @param examples lista de ejemplos de iteraciones
+     */
     public AsymtoticController(Window window, AsymtoticCalculatorService asymtoticCalculatorService, int[] examples){
         this.window = window;
         this.asymtoticCalculatorService = asymtoticCalculatorService;
@@ -23,6 +34,9 @@ public class AsymtoticController {
         this.examples = examples;
     }
 
+    /***
+     * Clase que sirve para poder detectar cuando se pulsa un botón desde la ventana
+     */
     class AsymtoticListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -39,6 +53,11 @@ public class AsymtoticController {
             }
         }
 
+        /***
+         *
+         * @param type tipo de coste que se ha seleccionado, está asociado al botón que se ha pulsado
+         * @param color color de la línea del gráfico que se va a pintar
+         */
         private void paintPointsToWindow(AsymtoticCostsTypes type, int color){
             List<Point> points = new ArrayList<>();
             for (int example: examples) {

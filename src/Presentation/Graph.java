@@ -1,3 +1,8 @@
+/***
+ * AUTHORS: RAFAEL ADRIÁN GIL CAÑESTRO
+ *          MIRUNA ANDREEA GHEATA
+ */
+
 package Presentation;
 
 import Domain.Interfaces.IGraph;
@@ -60,13 +65,22 @@ public class Graph extends JPanel implements IGraph {
         return new Dimension(PREF_W, PREF_H);
     }
 
+    /***
+     * Sirve para pintar los puntos que vienen en la lista
+     * @param g elemento gráfico
+     * @param graphPointsInput lista de puntos que se debe pintar
+     * @param color color con el que se va a pintar el gráfico
+     */
     public void paintPoints(Graphics g, List<Domain.Point> graphPointsInput, int color){
         long MIN_SCORE = getMinimumTime(graphPointsInput);
         Graphics2D g2 = (Graphics2D)g;
         Insets insets = getInsets();
+
+        //hacemos que el origen de coordenadas esté abajo a la izquierda
         int h = getHeight() - insets.top - insets.bottom;
         g2.scale(1.0, -1.0);
         g2.translate(0, -h - insets.top);
+
         double xScale = ((double) getWidth() - 2 * BORDER_GAP) / (graphPointsInput.size() - 1);
         List<Point> graphPoints = new ArrayList<>();
         for (int i = 0; i < graphPointsInput.size(); i++) {

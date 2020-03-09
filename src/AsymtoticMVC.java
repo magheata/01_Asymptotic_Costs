@@ -1,3 +1,8 @@
+/***
+ * AUTHORS: RAFAEL ADRIÁN GIL CAÑESTRO
+ *          MIRUNA ANDREEA GHEATA
+ */
+
 import Application.AsymtoticController;
 import Infrastructure.AsymtoticCalculatorService;
 import Presentation.Window;

@@ -1,3 +1,8 @@
+/***
+ * AUTHORS: RAFAEL ADRIÁN GIL CAÑESTRO
+ *          MIRUNA ANDREEA GHEATA
+ */
+
 package Infrastructure;
 
 import Domain.AsymtoticCostsTypes;
@@ -8,9 +13,20 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/***
+ * Clase que calcula los costes
+ */
 public class AsymtoticCalculatorService implements IAsymtoticCalculatorService {
 
     private ExecutorService executor = Executors.newSingleThreadExecutor();
+
+    /***
+     * Sirve para calcular el tiempo que dura ejecutar un código que tiene
+     * como coste asintótico aquel que viene dado por el tipo.
+     * @param type tipo de coste que se quiere calcular
+     * @param n número de iteraciones
+     * @return Punto calculado con coordenadas (x, y)
+     */
     @Override
     public Future<Point> RunExample(AsymtoticCostsTypes type, int n) {
         return executor.submit(() -> {

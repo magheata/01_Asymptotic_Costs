@@ -1,3 +1,8 @@
+/***
+ * AUTHORS: RAFAEL ADRIÁN GIL CAÑESTRO
+ *          MIRUNA ANDREEA GHEATA
+ */
+
 package Presentation;
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +17,11 @@ public class Window extends JFrame {
     public JButton onsqr;
     private Graph graph;
 
+    /***
+     *
+     * @param frameName
+     * @param number_of_examples
+     */
     public Window(String frameName, int number_of_examples) {
         super(frameName);
         graph = new Graph(number_of_examples);
@@ -24,6 +34,10 @@ public class Window extends JFrame {
         this.setVisible(true);
     }
 
+    /***
+     *
+     * @param asymtoticButtonListener
+     */
     public void addAsymtoticListener(ActionListener asymtoticButtonListener){
         o1.addActionListener(asymtoticButtonListener);
         on.addActionListener(asymtoticButtonListener);
@@ -31,10 +45,19 @@ public class Window extends JFrame {
         onsqr.addActionListener(asymtoticButtonListener);
     }
 
+    /***
+     *
+     * @param points
+     * @param color
+     */
     public void paintPoints(List<Domain.Point> points, int color){
         graph.paintPoints(this.getGraphics(), points, color);
     }
 
+    /***
+     *
+     * @return
+     */
     private JPanel addButtons(){
         // Define new buttons
         o1 = new JButton("O(1)");
